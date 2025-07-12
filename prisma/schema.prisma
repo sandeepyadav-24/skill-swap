@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id               String         @id @default(uuid())
+  name             String
+  email            String         @unique
+  password         String
+  profilePhoto     String?
+  location         String?
+  availability     String[]       // ["weekends", "evenings"]
+  isPublic         Boolean        @default(true)
+  createdAt        DateTime       @default(now())
+
+  // Relations
+  skills           UserSkill[]
+  sentRequests     SwapRequest[]  @relation("SentRequests")
+  receivedRequests SwapRequest[]  @relation("ReceivedRequests")
+  feedbacksGiven   Feedback[]     @relation("GivenFeedbacks")
+  feedbacksReceived Feedback[]    @relation("ReceivedFeedbacks")
+}
+
+model Skill {
+  id                String         @id @default(uuid())
+  name              String         @unique
+  userSkills        UserSkill[]
+  offeredInRequests SwapRequest[]  @relation("OfferedSkill")
+  wantedInRequests  SwapRequest[]  @relation("WantedSkill")
+}
+
+model UserSkill {
+  id       String     @id @default(uuid())
+  user     User       @relation(fields: [userId], references: [id])
+  skill    Skill      @relation(fields: [skillId], references: [id])
+  type     SkillType
+
+  userId   String
+  skillId  String
+
+  @@unique([userId, skillId, type])
+}
+
+enum SkillType {
+  OFFERED
+  WANTED
+}
+
+model SwapRequest {
+  id             String     @id @default(uuid())
+  fromUser       User       @relation("SentRequests", fields: [fromUserId], references: [id])
+  toUser         User       @relation("ReceivedRequests", fields: [toUserId], references: [id])
+  offeredSkill   Skill      @relation("OfferedSkill", fields: [offeredSkillId], references: [id])
+  wantedSkill    Skill      @relation("WantedSkill", fields: [wantedSkillId], references: [id])
+  status         SwapStatus @default(PENDING)
+  createdAt      DateTime   @default(now())
+
+  feedbacks      Feedback[] // Optional multiple feedbacks
+
+  fromUserId     String
+  toUserId       String
+  offeredSkillId String
+  wantedSkillId  String
+}
+
+enum SwapStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+model Feedback {
+  id            String        @id @default(uuid())
+  fromUser      User          @relation("GivenFeedbacks", fields: [fromUserId], references: [id])
+  toUser        User          @relation("ReceivedFeedbacks", fields: [toUserId], references: [id])
+  swapRequest   SwapRequest   @relation(fields: [swapRequestId], references: [id])
+  rating        Int
+  comment       String?
+  createdAt     DateTime      @default(now())
+
+  fromUserId     String
+  toUserId       String
+  swapRequestId  String
+}
