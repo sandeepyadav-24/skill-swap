@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤝 Skill Swap Platform
 
-## Getting Started
+**Team Name:** Future Layoff  
+**Contact Emails:**  
+📩 omaryan392@gmail.com  
+📩 sandeepyadav004343@gmail.com  
+📩 prithvirajdwivedy@gmail.com  
 
-First, run the development server:
+A web application developed during a hackathon that empowers users to exchange skills through peer-to-peer learning. Users can list the skills they offer, request skills they want to learn, and collaborate with others based on mutual interests.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Problem Statement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build a **Skill Swap Platform** — a user-driven web application that enables individuals to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- List the skills they offer
+- Request the skills they want to learn
+- Connect with others based on mutual interest
+- Exchange skills through a collaborative process
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔑 Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👤 User Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Basic Profile**
+  - Name, location, and profile photo
+- **Skills Management**
+  - Add skills you offer
+  - Add skills you want to learn
+- **Availability**
+  - Specify time slots like weekends or evenings
+- **Profile Privacy**
+  - Public or private profile setting
+- **Search & Browse**
+  - Search users by skill (e.g., “Photoshop”, “Excel”)
+  - View only public profiles
 
-## Deploy on Vercel
+### 🔁 Skill Swap Requests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Send swap requests
+- Accept or reject incoming requests
+- View pending, current, and past swaps
+- Provide feedback after a swap
+- Delete unaccepted requests
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🛡️ Admin Panel
+
+- Reject spammy or inappropriate skill listings
+- Ban users violating platform policies
+- Monitor all swap statuses
+- Send platform-wide announcements
+- Download reports:
+  - User activity
+  - Feedback logs
+  - Swap statistics
+
+---
+
+## 🧩 Mockup and UI Flow
+
+Interactive UI mockup designed in Excalidraw.
+
+📎 [View UI Mockups](#) *(Insert Excalidraw link here)*
+
+**Screens include:**
+
+- Home page with skill listings
+- Login and profile pages
+- Swap request/response interfaces
+- Skill selection modal
+- Pagination and visibility settings
+
+---
+
+## 🛠 Tech Stack
+
+| Component     | Technology               |
+| ------------- | ------------------------ |
+| **Frontend**  | HTML, CSS, JavaScript / React |
+| **Backend**   | Node.js / Express or Django / Flask |
+| **Database**  | MongoDB / PostgreSQL / Firebase |
+| **Auth**      | JWT / Firebase Auth |
+| **Version Control** | Git & GitHub |
+
+---
+
